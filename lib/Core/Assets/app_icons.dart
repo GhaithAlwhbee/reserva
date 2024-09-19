@@ -1,5 +1,6 @@
 class AppIcons {
   static const path = "assets/icons/";
+  static const String logo = "${path}logo.png";
   static const String person = "${path}person.svg";
   static const String eye = "${path}eye.svg";
   static const String lock = "${path}lock.svg";
@@ -13,6 +14,11 @@ class AppIcons {
   static const String homeIcon = "${path}home_icon.svg";
   static const String pointIcon = "${path}point_icon.png";
   static const String telephoneIcon = "${path}telephone.svg";
+
+  static const String homeNavigationIcon = "${path}home_navigation_icon.png";
+  static const String restaurntNavigationIcon = "${path}restaurnt_navigation_icon.png";
+  static const String flagNavigationIcon = "${path}flag_navigation_icon.png";
+
 
   static const String breakFastServiceIcon = "${path}Breakfast_service_icon.svg";
   static const String brunchServiceIcon = "${path}Brunch_service_icon.svg";

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:reserva/Core/Assets/app_icons.dart';
 import 'package:reserva/Core/Global%20Widgets/custom_elevated_button.dart';
 import 'package:reserva/Core/Global%20Widgets/custom_text_field.dart';
@@ -24,6 +25,27 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final formKey = GlobalKey<FormState>();
   bool _isObscure = true;
+
+  final LocalAuthentication auth = LocalAuthentication();
+
+  checkAuthentication()async{
+    bool isAvailable = await auth.canCheckBiometrics;
+    print(isAvailable);
+
+    if(isAvailable){
+      bool result = await auth.authenticate(localizedReason: 'scan your finger to proceed');
+      if(result){
+        context.pushReplacement('/dashboard_screen');
+      }
+      else{
+        print('permission denied');
+      }
+    }
+    else {
+      print('Biometrics not available');
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +158,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SvgPicture.asset(Images.fingerPrint),
+                    GestureDetector(
+                      onTap: (){
+                        checkAuthentication();
+                      },
+                      child: SvgPicture.asset(Images.fingerPrint)),
                     const SizedBox(
                       height: 10,
                     ),

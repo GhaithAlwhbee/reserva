@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:reserva/Core/Assets/app_icons.dart';
 import 'package:reserva/Core/Theme%20&%20Constants/Colors.dart';
 import 'package:reserva/Presentation/Pages/Home/home_screen.dart';
 import 'package:reserva/Presentation/Pages/Reservations/reservations_screen.dart';
@@ -26,7 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: screens[index],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-            indicatorColor: ColorsManager.kPrimaryColor,
+            indicatorColor: ColorsManager.kSecondaryColorLight,
             iconTheme: MaterialStateProperty.all(
                 IconThemeData(color: ColorsManager.kWhiteColor),
                 ),
@@ -45,29 +47,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
           onDestinationSelected: (index) => setState(() {
             this.index = index;
           }),
-          destinations: const [
+          destinations:  [
             NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
+              icon: Image.asset(AppIcons.homeNavigationIcon),
+              
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.restaurant_outlined),
-              selectedIcon: Icon(
-                Icons.restaurant_menu,
-                color: Colors.white,
-              ),
+              icon: Image.asset(AppIcons.restaurntNavigationIcon),
               label: 'Restaurants',
             ),
             NavigationDestination(
-              icon: Icon(Icons.flag_outlined),
-              selectedIcon: Icon(
-                Icons.flag,
-                color: Colors.white,
-              ),
+              icon: Image.asset(AppIcons.flagNavigationIcon),
+              
               label: 'Reservations',
             ),
           ],
